@@ -10,8 +10,6 @@ ModuleRegistry.registerModules([AllCommunityModule]);
 
 function App() {
 
-
-
   const { data } = useQuery({
     queryKey: ['posts'],
     queryFn: () => axios.get('https://dummyjson.com/posts').then((res) => res.data.posts)
@@ -38,7 +36,7 @@ function App() {
     },
     {
       headerName: 'Name & Country',
-      height:80,
+      height: 80,
       children: [
         { field: 'title' },
         { field: 'body' }
