@@ -24,8 +24,6 @@ function App() {
   });
 
 
-
-
   const [colDefs, setColDefs] = useState([
     {
       headerCheckboxSelection: true,  // Adds a checkbox to the header for selecting all rows
@@ -42,7 +40,18 @@ function App() {
         { field: 'body' }
       ]
     },
-    { field: 'id', headerName: 'ID', sortable: true, filter: true },
+    {
+      field: 'id',
+      filterParams: {
+        comparator: (a, b) => {
+          const valA = parseInt(a);
+          const valB = parseInt(b);
+          if (valA === valB) return 0;
+          return valA > valB ? 1 : -1;
+        }
+      },
+      headerName: 'ID', sortable: true, filter: true
+    },
     { field: 'title', headerName: 'Title', sortable: true, filter: true },
     { field: 'body', headerName: 'Body', sortable: true, filter: true },
     {
@@ -82,7 +91,6 @@ function App() {
           suppressColumnMoveAnimation={true}
           enableCellTextSelection={true}
           ensureDomOrder={true}
-
         />
       </div>
     </>
